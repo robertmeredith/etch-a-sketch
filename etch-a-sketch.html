@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Etch-A-Sketch</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id=buttonContainer>
+        <button id="clearButton">CLEAR</button>
+        <button id="randomButton">RAINBOW</button>
+        <button id="blackButton">BLACK</button>
+    </div>
+
+    <div class="container" id="container"></div>
+    
+    <script>
+
+        let userNumber = 16;
+        let userColor = 'black';
+
+        const container = document.querySelector('#container');
+
+        // Add event listeners to buttons
+        document.querySelector('#clearButton').addEventListener('click', newUserGrid);
+        document.querySelector('#randomButton').addEventListener('click', setHoverColorRandom);
+        document.querySelector('#blackButton').addEventListener('click', setHoverColor);
+        
+
+        createGrid(userNumber); 
+
+        
+        // Function that creates grid
+        function createGrid(userNumber) {
+            let boxWidth = 100 / userNumber;
+
+            for (let i = 1; i <= userNumber; i++) {
+                for (let j = 1; j <= userNumber; j++) {
+                    let gridBlock = document.createElement('div');
+                    gridBlock.classList.add('gridBlock');
+                    gridBlock.style.width = boxWidth + '%';
+                    container.appendChild(gridBlock);
+                }
+            }
+            setHoverColor();
+        }
+
+        // Function that changes block color to BLACK
+        function setHoverColor() {
+            let items = document.querySelectorAll('.gridBlock');
+            items.forEach(item => {
+                item.addEventListener('mouseover', () => {
+                item.style.backgroundColor = userColor;
+                });
+            });
+        }
+
+        // Function that changes block color to RANDOM
+            function setHoverColorRandom() {
+                let items = document.querySelectorAll('.gridBlock');
+                items.forEach(item => {
+                item.addEventListener('mouseover', () => {
+                item.style.backgroundColor = randomColor();
+                });
+            });
+        }
+
+
+        // Function that takes user input to create new grid
+        function newUserGrid() {
+            let userNumber = prompt("How many squares? Maximum is 100");
+            if (userNumber > 100 || userNumber < 1) {
+                userNumber = prompt("How many squares? Maximum is 100");
+            }
+            clearGrid();
+            createGrid(userNumber);
+        }
+
+        
+        // Function that clears grid
+        function clearGrid() {
+            while(container.firstChild) {
+            container.removeChild(container.firstChild);
+            }
+        }
+
+
+        // Function that creates a random color
+        function randomColor() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+    </script>
+</body>
+</html>

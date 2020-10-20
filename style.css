@@ -1,0 +1,43 @@
+
+#buttonContainer {
+    width: 900px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    padding: 7px 50px 7px 50px;
+    margin: 15px 15px 25px 15px;
+}
+
+button:hover {
+    box-shadow: 10px 10px hotpink;
+}
+
+
+#container {
+    width: 900px;
+    height: 650px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: pink;
+    border: 2px solid grey;
+    border-radius: 8px; 
+}
+
+#container .gridBlock {
+    color: black;
+    opacity: 70%;
+}
+
+
